@@ -104,7 +104,7 @@ public class Week3 {
 		e.remove(v2);
 	}
 	
-	public void stupidCut(){
+	public void minCut(){
 		int v1, v2;
 		while(v.size()>2){
 			v1 = (int)(Math.random() * v.size());
@@ -126,18 +126,10 @@ public class Week3 {
 		get();
 		int size = vori.size();
 		for(int i = 0; i < (size * size * Math.log(size));i++){
-			//printing();
 			Week3 w = new Week3();
-			w.stupidCut();
+			w.minCut();
 			System.out.println("Round : " + i + ", " + minVal);
 		}
-		long end = System.nanoTime();
-		long total = (end-start)/1000000000;
-		long hour = total/3600;
-		total -= hour*3600;
-		long min = (total)/60;
-		total -= min*60;
-		System.out.println("Total Time : " + hour + "Hours, "+ min + " Minutes, "+ total + " Seconds");
 		System.out.println("Final Min val = " + minVal);
 	}
 }
