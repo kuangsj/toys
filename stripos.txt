@@ -1,0 +1,43 @@
+/* assumes that if offset is larger than strlen(haystack), then returns -1 instead*/
+int stripos ( char* haystack, char* needle, int offset ) {
+
+	char haystack2;
+	int hlen = 0;	
+	/* get length of haystack and make all uppercase char in haystack into 		lowercase, then store in haystack2 */
+	while (haystack[hlen] != '\0'){
+		if(haystack[hlen]>=65&&haystack[hlen]<=90){
+			haystack2[hlen]=haystack[hlen]+32;
+		}else{
+			haystack2[hlen]=haystack[hlen];
+		}
+      		hlen++;
+	}
+
+	char needle2;
+	int nlen = 0;
+	/* get length of needle and make all uppercase char in needle into 		lowercase, then stored in needle2 */
+	while (needle[nlen] != '\0'){
+		if(needle[nlen]>=65&&needle[nlen]<=90){
+			needle2[nlen]=needle2[nlen]+32;
+		}else{
+			needle2[nlen]=needle2[nlen];
+		}
+	}
+	
+	/* if either has length of 0, then return -1 */
+	if(offset>hlen-nlen || hlen==0 || nlen==0){return -1;}
+
+	int i;
+	int in;
+	/* compare first char of needle against haystack, if match then 		proceed with other needle[], else move on on haystack */
+	for(i=offset;i<=hlen-nlen;i++){
+	if(haystack2[i]==needle2[0]){
+		for(in=1;in<nlen;in++){
+			//if match: move on; else break the loop
+			if(haystack2[i+in]!=needle2[in]){break;}
+		}
+		if(in==nlen){return i;}
+	}
+
+	return -1;
+}
